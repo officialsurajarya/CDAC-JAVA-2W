@@ -1,18 +1,21 @@
-public class switchEx {
+public class GradeFindUsingSwitch {
     public static void main(String[] args) {
-        char a= 'a';
-        switch (a) {
-            case 'a':
+        char inp = 'B';
+        switch (inp) {
+            case 'A':
                 System.out.println("Excelent");
                 break;
-            case 'b':
+            case 'B':
                 System.out.println("Good");
                 break;
-            case 'c':
+            case 'C':
                 System.out.println("Average");
                 break;   
-            case 'd':
+            case 'D':
                 System.out.println("Poor");
+                break;
+            case 'E':
+                System.out.println("Fail");
                 break;   
             default:
                 System.out.println("Invalid Grade");
