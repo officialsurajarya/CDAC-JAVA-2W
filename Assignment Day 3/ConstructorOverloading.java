@@ -1,4 +1,4 @@
-class Book {
+public class Book {
     int bookId;
     String title;
     double price;
