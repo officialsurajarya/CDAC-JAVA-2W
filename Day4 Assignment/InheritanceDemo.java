@@ -1,4 +1,3 @@
-// Parent class
 class Parent {
 
     void showParent() {
@@ -6,7 +5,6 @@ class Parent {
     }
 }
 
-// Child class
 class Child extends Parent {
 
     void showChild() {

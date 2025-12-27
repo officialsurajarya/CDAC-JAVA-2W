@@ -7,7 +7,6 @@ class Hospital {
 
 class Fortis extends Hospital {
 
-    @Override
     int getNumberOfPatients() {
         return 120;
     }
@@ -15,7 +14,6 @@ class Fortis extends Hospital {
 
 class Narayana extends Hospital {
 
-    @Override
     int getNumberOfPatients() {
         return 200;
     }
@@ -23,7 +21,6 @@ class Narayana extends Hospital {
 
 class Apolo extends Hospital {
 
-    @Override
     int getNumberOfPatients() {
         return 150;
     }
@@ -32,15 +29,13 @@ class Apolo extends Hospital {
 public class HospitalDemo {
     public static void main(String[] args) {
 
-        Hospital h;
-
-        h = new Fortis();
+        Hospital h = new Fortis();
         System.out.println("Fortis Hospital Patients: " + h.getNumberOfPatients());
 
-        h = new Narayana();
-        System.out.println("Narayana Hospital Patients: " + h.getNumberOfPatients());
+        Hospital h1 = new Narayana();
+        System.out.println("Narayana Hospital Patients: " + h1.getNumberOfPatients());
 
-        h = new Apolo();
-        System.out.println("Apolo Hospital Patients: " + h.getNumberOfPatients());
+        Hospital h2 = new Apolo();
+        System.out.println("Apolo Hospital Patients: " + h2.getNumberOfPatients());
     }
 }
