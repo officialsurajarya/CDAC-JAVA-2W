@@ -21,7 +21,7 @@ class Circle extends Shape {
     }
 }
 
-public class AbstractConstructorDemo {
+public class AbstractConstructor {
     public static void main(String[] args) {
         Shape s = new Circle("Circle");
         s.draw();
