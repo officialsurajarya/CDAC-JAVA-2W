@@ -10,7 +10,6 @@ class Student2 {
     public int getMarks() {
         return marks;
     }
-    
 }
 
 public class IncapsulationEx {
@@ -18,7 +17,6 @@ public class IncapsulationEx {
         Student2 s = new Student2();
         s.marks = 10;
         s.setMarks(85);
-
-        System.out.println("Marks: "+s.getMarks());
+        System.out.println("Marks: " + s.getMarks());
     }
 }

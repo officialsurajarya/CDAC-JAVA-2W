@@ -1,6 +1,8 @@
+package Array;
+
 public class ArrSort {
     public static void main(String[] args) {
-        int[] arr = { 10, 33, 100, 431, 253 };
+        int[] arr = { 10, 333, 100, 431, 253 };
         int temp;
         int len = arr.length;
 

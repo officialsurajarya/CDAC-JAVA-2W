@@ -1,6 +1,8 @@
+package Array;
+
 import java.util.Arrays;
 
-public class ToString {
+public class ArrToString {
     public static void main(String[] args) {
         String[] arr = { "Official", "Suraj", "Arya" };
         String Ans = Arrays.toString(arr);

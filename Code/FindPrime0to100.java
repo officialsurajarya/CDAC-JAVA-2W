@@ -2,7 +2,7 @@ package Code;
 
 public // import java.util.Scanner;
 
-class Innerzeroto100Prime {
+class FindPrime0to100 {
 
     public static void main(String[] args) {
         // Scanner sc = new Scanner(System.in);

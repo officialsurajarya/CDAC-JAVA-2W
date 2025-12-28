@@ -1,3 +1,5 @@
+package Array;
+
 public class BigestSecondBig {
 
     public static void main(String[] args) {
@@ -21,8 +23,8 @@ public class BigestSecondBig {
             }
         }
 
-        System.out.println(index);
-        System.out.println(big);
-        System.out.println(Secondbig);
+        // System.out.println(index);
+        System.out.println("Biggest: " + big);
+        System.out.println("Second biggest: " + Secondbig);
     }
 }
