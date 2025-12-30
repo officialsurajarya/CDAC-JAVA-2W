@@ -1,6 +1,6 @@
 public class RemoveBlankSpace {
     public static void main(String[] args) {
-        String str = "  Hello   How  Are You     ";
+        String str = "      Hello       How Are You     ";
 
         String result = str.replace(" ", "");
 
