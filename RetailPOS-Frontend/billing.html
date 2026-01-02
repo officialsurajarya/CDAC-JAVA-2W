@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billing System - Retail POS System</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Top Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <svg width="40" height="40" viewBox="0 0 60 60" fill="none">
+                <rect x="5" y="5" width="50" height="50" rx="8" fill="#4CAF50"/>
+                <path d="M20 25h20M20 30h20M20 35h15" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                <circle cx="42" cy="35" r="3" fill="white"/>
+            </svg>
+            <span>Retail POS System</span>
+        </div>
+        <div class="navbar-user">
+            <span id="currentUser">Welcome, Cashier</span>
+            <button onclick="logout()" class="btn btn-danger btn-sm">Logout</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="dashboard.html">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
+                        </svg>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="products.html">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2z"/>
+                        </svg>
+                        Products
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a href="billing.html">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/>
+                        </svg>
+                        Billing
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="inventory.html">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H8V4h12v12z"/>
+                        </svg>
+                        Inventory
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1>Create New Bill</h1>
+                <button onclick="resetBill()" class="btn btn-secondary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+                    </svg>
+                    Reset Bill
+                </button>
+            </div>
+
+            <div class="billing-container">
+                
+                <!-- Left Section: Customer & Product Selection -->
+                <div class="billing-left">
+                    
+                    <!-- Customer Details Card -->
+                    <div class="card">
+                        <h3>Customer Details</h3>
+                        <form id="customerForm">
+                            <div class="form-group">
+                                <label for="customerId">Customer ID *</label>
+                                <input type="text" id="customerId" required placeholder="C001">
+                            </div>
+                            <div class="form-group">
+                                <label for="customerName">Customer Name *</label>
+                                <input type="text" id="customerName" required placeholder="Enter customer name">
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Product Selection Card -->
+                    <div class="card">
+                        <h3>Add Product to Bill</h3>
+                        <form id="addProductForm" onsubmit="addProductToBill(event)">
+                            <div class="form-group">
+                                <label for="billProductId">Product *</label>
+                                <select id="billProductId" required onchange="updateProductPrice()">
+                                    <option value="">Select Product</option>
+                                </select>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="productPrice">Price (₹)</label>
+                                    <input type="number" id="productPrice" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="productQuantity">Quantity *</label>
+                                    <input type="number" id="productQuantity" required min="1" value="1">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                                </svg>
+                                Add to Bill
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+
+                <!-- Right Section: Bill Summary -->
+                <div class="billing-right">
+                    
+                    <!-- Bill Items Card -->
+                    <div class="card">
+                        <h3>Bill Items</h3>
+                        <div class="bill-items-container">
+                            <table class="bill-table">
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Price</th>
+                                        <th>Qty</th>
+                                        <th>Total</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="billItemsTable">
+                                    <tr>
+                                        <td colspan="5" class="empty-message">No items added yet</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Bill Summary -->
+                        <div class="bill-summary">
+                            <div class="summary-row">
+                                <span>Subtotal:</span>
+                                <span id="subtotal">₹0.00</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>GST (18%):</span>
+                                <span id="gst">₹0.00</span>
+                            </div>
+                            <div class="summary-row total-row">
+                                <span><strong>Total Amount:</strong></span>
+                                <span id="totalAmount"><strong>₹0.00</strong></span>
+                            </div>
+                        </div>
+
+                        <!-- Generate Invoice Button -->
+                        <button onclick="generateInvoice()" class="btn btn-success btn-block btn-lg">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/>
+                            </svg>
+                            Generate Invoice
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Invoice Modal -->
+    <div id="invoiceModal" class="modal">
+        <div class="modal-content invoice-modal">
+            <div class="modal-header">
+                <h2>Invoice Generated</h2>
+                <span class="close" onclick="closeInvoiceModal()">&times;</span>
+            </div>
+            <div class="invoice-content" id="invoiceContent">
+                <!-- Invoice will be generated here -->
+            </div>
+            <div class="invoice-actions">
+                <button onclick="printInvoice()" class="btn btn-primary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/>
+                    </svg>
+                    Print
+                </button>
+                <button onclick="closeInvoiceModal()" class="btn btn-secondary">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/billing.js"></script>
+</body>
+</html>
